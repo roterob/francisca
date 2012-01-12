@@ -1,9 +1,10 @@
-$(document).ready(function(){
-	$('#cbox').jflickrfeed({
+
+function cargarImagenes(flickrSetId) {
+	$('#cbox').empty().jflickrfeed({
 		flickrbase: 'http://api.flickr.com/services/feeds/',
 		feedapi: 'photoset.gne',
 		qstrings: {
-			set: '72157628773264369',
+			set: flickrSetId,
 			nsid: '73806935@N03',
 			limit: 50,
 			lang: 'en-us'
@@ -16,23 +17,27 @@ $(document).ready(function(){
 	}, function(data) {
 		$('#cbox a').colorbox();
 	});
-	
-	$('#cycle').jflickrfeed({
-		limit: 14,
-		qstrings: {
-			id: '37304598@N02'
-		},
-		itemTemplate: '<li><img src="{{image}}" alt="{{title}}" /><div>{{title}}</div></li>'
-	}, function(data) {
-		$('#cycle div').hide();
-		$('#cycle').cycle({
-			timeout: 5000
-		});
-		$('#cycle li').hover(function(){
-			$(this).children('div').show();
-		},function(){
-			$(this).children('div').hide();
-		});
-	});
+}
 
+$(document).ready(function(){
+    var flickrSets = {
+		"lnkPiedras": "72157628773264369",
+		"lnkIlustraciones": "72157628841470737",
+		"lnkMunecas": "",
+		"lnkOtros": "",
+		"lnkContacto": ""
+	};
+
+	$('#mainNav A').click(function(){
+		var flickrSet = flickrSets[this.id];
+		if(flickrSet){
+			$('#mainNav .active').removeClass('active');
+			$(this).addClass('active');
+			cargarImagenes(flickrSet);
+		}
+		else
+			alert("Opción no implementada");
+	});
+	
+	
 });
