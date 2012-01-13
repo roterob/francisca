@@ -22,7 +22,7 @@ function cargarImagenes(flickrSetId) {
 $(document).ready(function(){
     var flickrSets = {
 		"lnkPiedras": "72157628773264369",
-		"lnkIlustraciones": "72157628841470737",
+		"lnkIlustraciones": "72157628855567197",
 		"lnkMunecas": "",
 		"lnkOtros": "",
 		"lnkContacto": ""
